@@ -1,0 +1,408 @@
+
+  
+<!DOCTYPE html>
+<html>
+<head>
+     
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>基于hexo的个人博客搭建（不详细有坑版） | luminous dust</title>
+<link href="/img/favicon.png" rel="shortcut icon">
+<meta name="author" content="wzx ">
+<meta name="copyright" content="wzx">
+<meta name="keywords" content="">
+<meta name="description" content="目录：安装node.js、Git、npm及验证安装cnpm(淘宝镜像源，下载npm后，通过npm进行安装)及验证安装hexo(通过cnpm全局安装hexo)、验证及配置注册github，将博客部署到github上更换hexo博客主题及创建文章" />
+<meta property="site_name" content="luminous dust " />
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://example.com/2021/10/23/%E5%9F%BA%E4%BA%8Ehexo%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%8D%E8%AF%A6%E7%BB%86%E6%9C%89%E5%9D%91%E7%89%88%EF%BC%89/index.html">
+<meta property="og:title" content="基于hexo的个人博客搭建（不详细有坑版） | luminous dust" />
+<meta property="og:site_name" content="luminous dust" />
+<meta property="og:description" content="目录：安装node.js、Git、npm及验证安装cnpm(淘宝镜像源，下载npm后，通过npm进行安装)及验证安装hexo(通过cnpm全局安装hexo)、验证及配置注册github，将博客部署到github上更换hexo博客主题及创建文章" />
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="wzx ">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link href="http://example.com" rel="prefetch">
+<link href="//cdn.jsdelivr.net" rel="preconnect" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="/css/main.css " rel="stylesheet">
+<script src="/js/utlis.js"></script>
+ 
+    
+ 
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+     
+    
+ 
+     
+
+<script>
+    var $config = {
+        
+        search_file: "/search.xml",
+        
+        
+        code_block_expand: {
+            enable: true,
+            height: 400,
+            scrollTop: 200
+        }
+        
+    }
+</script>
+    
+
+
+
+
+  
+
+
+    <div id="body_wrap">
+        <nav class="navbar">
+    <div id="navbar_wrap">
+        <a href="/" class="blog_name">luminous dust</a>
+        
+            <i class="fas fa-search search_btn" ></i>
+        
+        <i class="fas fa-bars open_nav"></i>
+        <ul class="menu">
+          
+        </ul>
+    </div>
+</nav>
+<div id="mobile_nav">
+    <ul>
+    
+    </ul>
+</div>
+        <div id="main_wrap">
+                <main class="main">
+                     
+                     
+
+<article class="post">
+  <div class="post_info">
+    <div class="post_title">
+      <h1>基于hexo的个人博客搭建（不详细有坑版）</h1>
+    </div>
+    <div class="post_meta">
+      <div class="post_date">
+        <i class="far fa-calendar-alt fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">
+          发表于
+            2021-10-23 |
+        </span>
+        
+        <i class="fas fa-history fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">
+          更新于
+            2021-10-23
+        </span>
+      </div>
+      <div class="post-meta-wordcount">
+        <i class="far fa-file-word fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">总字数:</span>
+        <span class="word-count">71 | </span>
+        <i class="far fa-clock fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">阅读时长:</span>
+        <span>1分钟</span>
+        
+        | <i class="far fa-eye fa-fw post-meta-icon"></i>
+        <span id="/2021/10/23/%E5%9F%BA%E4%BA%8Ehexo%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%EF%BC%88%E4%B8%8D%E8%AF%A6%E7%BB%86%E6%9C%89%E5%9D%91%E7%89%88%EF%BC%89/" class="leancloud_visitors">
+            <span class="post-meta-label">阅读量:</span>
+            <span class="leancloud-visitors-count" id="twikoo_visitors">0</span>
+        </span>
+        
+      </div>
+    </div>
+  </div>
+  <div class="post_content">
+    <h2 id="目录："><a href="#目录：" class="headerlink" title="目录："></a>目录：</h2><ol>
+<li><h3 id="安装node-js、Git、npm及验证"><a href="#安装node-js、Git、npm及验证" class="headerlink" title="安装node.js、Git、npm及验证"></a>安装node.js、Git、npm及验证</h3></li>
+<li><h3 id="安装cnpm-淘宝镜像源，下载npm后，通过npm进行安装-及验证"><a href="#安装cnpm-淘宝镜像源，下载npm后，通过npm进行安装-及验证" class="headerlink" title="安装cnpm(淘宝镜像源，下载npm后，通过npm进行安装)及验证"></a>安装cnpm(淘宝镜像源，下载npm后，通过npm进行安装)及验证</h3></li>
+<li><h3 id="安装hexo-通过cnpm全局安装hexo-、验证及配置"><a href="#安装hexo-通过cnpm全局安装hexo-、验证及配置" class="headerlink" title="安装hexo(通过cnpm全局安装hexo)、验证及配置"></a>安装hexo(通过cnpm全局安装hexo)、验证及配置</h3></li>
+<li><h3 id="注册github，将博客部署到github上"><a href="#注册github，将博客部署到github上" class="headerlink" title="注册github，将博客部署到github上"></a>注册github，将博客部署到github上</h3></li>
+<li><h3 id="更换hexo博客主题及创建文章"><a href="#更换hexo博客主题及创建文章" class="headerlink" title="更换hexo博客主题及创建文章"></a>更换hexo博客主题及创建文章</h3></li>
+</ol>
+
+  </div>
+   
+   
+
+  
+  <div class="post_copyright">
+    <div class="post_copyright_icon"></div>
+      <div class="post_copyright_author">
+          <span class="post_copyright_meta">文章作者: </span>
+            <span class="post_copyright_info">
+              <a href="mailto:lete@lete114.top" >Lete乐特</a>
+            </span>
+      </div>
+      <div class="post_copyright_type">
+          <span class="post_copyright_meta">文章链接: </span>
+            <span class="post_copyright_info">
+              <a href="http://example.com/2021/10/23/基于hexo的个人博客搭建（不详细有坑版）/" >http://example.com/2021/10/23/基于hexo的个人博客搭建（不详细有坑版）/</a>
+            </span>
+      </div><div class="post_copyright_notice">
+          <span class="post_copyright_meta">版权声明: </span>
+            <span class="post_copyright_info">本博客所有文章除特别声明外，均采用
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/ " target="_blank" >
+                  CC BY-NC-SA 4.0 </a> 许可协议。转载请注明来自
+              <a href="http://example.com/2021/10/23/基于hexo的个人博客搭建（不详细有坑版）/" target="_blank" >Lete乐特's Blog</a>
+              ！</span>
+      </div>
+  </div>
+  
+
+
+ 
+
+
+
+
+<div class="pagination_post">
+    
+    
+</div>
+</article>
+
+    <div class="comment_head" id="直达评论">
+        <hr>
+        <div class="comment_headline">
+            <i class="fas fa-comments fa-fw"></i>
+            <span>评论</span>
+        </div>
+        
+            
+<div id="wcomments"></div>
+<script>
+function LoadWaline() {
+    getScript("//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js",function(){
+        let initData = {
+            el: '#wcomments',
+            path: location.pathname,
+            serverURL: 'https://waline.vercel.app/',
+            placeholder: '快来评论吧!!',
+            avatar: '',
+            meta: 'nick,mail,link'.split(","),
+            requiredFields: 'nick,mail,link'.split(","),
+            pageSize: 5,
+            lang: 'zh-CN',
+            emojiCDN: '',
+            emojiMaps: null,
+            visitor: true
+        }
+        var option = false;
+        if (option) {
+            initData = Object.assign(initData, option)
+        }
+        new Waline(initData)
+    })
+}
+LoadWaline()
+</script>
+        
+    </div>
+
+ 
+ 
+
+  <div id="toc">
+    <div class="toc_title">
+      <div>
+        目录
+          <span class="num">0%</span>
+      </div>
+      <progress class="progress" value="0" max="100"></progress>
+    </div>
+    <div class="toc_list">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%EF%BC%9A"><span class="toc-text">目录：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85node-js%E3%80%81Git%E3%80%81npm%E5%8F%8A%E9%AA%8C%E8%AF%81"><span class="toc-text">安装node.js、Git、npm及验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85cnpm-%E6%B7%98%E5%AE%9D%E9%95%9C%E5%83%8F%E6%BA%90%EF%BC%8C%E4%B8%8B%E8%BD%BDnpm%E5%90%8E%EF%BC%8C%E9%80%9A%E8%BF%87npm%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85-%E5%8F%8A%E9%AA%8C%E8%AF%81"><span class="toc-text">安装cnpm(淘宝镜像源，下载npm后，通过npm进行安装)及验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85hexo-%E9%80%9A%E8%BF%87cnpm%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85hexo-%E3%80%81%E9%AA%8C%E8%AF%81%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="toc-text">安装hexo(通过cnpm全局安装hexo)、验证及配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8Cgithub%EF%BC%8C%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A"><span class="toc-text">注册github，将博客部署到github上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2hexo%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E5%8F%8A%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="toc-text">更换hexo博客主题及创建文章</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+                </main>
+        </div>
+        <section id="rightside">
+    
+    <div class="rightside_item">
+        
+        
+         
+         
+        
+            <a id="open_toc" title="目录">
+                <i class="fas fa-list-ul"></i>
+            </a>
+        
+         
+         
+        <a href="javascript:(0)" id="darkmode" title="深色/浅色 ">
+            <i class="fas fa-moon"></i>
+        </a>
+         
+        
+        
+            <a href="#直达评论" title="直达评论">
+                <i class="fas fa-comments"></i>
+            </a>
+        
+        <a href="#" title="回到顶部">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+</section>
+         
+
+<footer class="footer" id="footer">
+    <div class="copyright">
+      &copy; 2020 - 2021
+        <i class="fas fa-fan"></i>
+        wzx
+    </div>
+    <div class="framework-info">
+        <span>框架 </span>
+        <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="footer-separator">|</span>
+        <span>主题 </span>
+        <a href="https://github.com/lete114/hexo-theme-MengD" target="_blank">MengD.(萌典) </a>
+    </div>
+    
+    <div class="custom-text">我相信我可以，但我一直在路上，所以我有无限的可能！！</div>
+</footer>
+    </div>
+    <div id="mask" onclick="close_all()"></div>
+    
+    <div id="local_search">
+        <div id="local_search_title">本地搜索 </div>
+        <input id="local_search_input" autocomplete="off" placeholder="搜索文章"
+            type="text">
+        <hr>
+        <div id="local_search_result"></div>
+        <span class="search_close_button"><i class="fas fa-times"></i></span>
+    </div>
+    <script src="/js/search.js"></script>
+
+    <div class="script">
+        <script src="/js/main.js"></script>
+        
+
+ 
+<script>
+    var originTitle = document.title;
+    var titleTime;
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+            clearTimeout(titleTime);
+        } else {
+            document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+            titleTime = setTimeout(function () {
+                document.title = originTitle;
+            }, 2000);
+        }
+    });
+</script>
+
+
+<script src="/js/lazyload.js"></script>
+
+
+
+    
+
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        var pjax = new Pjax({
+            selectors: [
+                "head title",
+                "main.main",
+                "#rightside"
+            ],
+            cache: true,
+            cacheBust: false
+        });
+
+        // 清除时间
+        var timer = null;
+        // 执行进度条
+        function ProgressStart(){
+            // 设置初始进度
+            var progress = 10;
+            // 创建进度条 及 css样式
+            var div = document.createElement('div');
+            div.className = "pjax_progress";
+            document.body.prepend(div);
+            // 定义随机数最大值最小值
+            var max=10,mini=3;
+            var result=max-mini;
+            // 清除
+            clearInterval(timer);
+            // 0.5秒内累加进度
+            timer = setInterval(function(){
+                // 随机数
+                var num = parseInt(Math.random()*result);
+                var randomResult = num+mini;
+                // 累加
+                progress+=randomResult
+                document.getElementsByClassName("pjax_progress")[0].style.width = progress+"%";
+                // 当进度达到95%时停止
+                if(progress>95)progress=95
+            },500)
+        }
+        // 加载进度条加载完毕
+        function ProgressFinish(){
+            clearInterval(timer);
+            // 页面加载完毕后进度100% 并在0.7秒后删除
+            var progress = document.getElementsByClassName("pjax_progress");
+            progress[0].style.width = "100%";
+            timer = setTimeout(function () {
+            progress[0].parentNode.removeChild(progress[0])
+            }, 700);
+        }
+
+        // 开始 PJAX 执行的函数
+		document.addEventListener('pjax:send', function () {
+            // 执行进度条
+            ProgressStart()
+        });
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+		document.addEventListener('pjax:complete', function () {
+
+            // 加载进度条加载完毕
+            ProgressFinish()
+            // 执行所有方法
+            exe_all_fn()
+
+            
+                // 图片懒加载
+                ImgLazyLoad("body img[data-img]","data-img")
+            
+            
+            
+            document.querySelectorAll('script[data-pjax]').forEach(item => {
+                const newScript = document.createElement('script')
+                const content = item.text || item.textContent || item.innerHTML || ""
+                Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+                newScript.appendChild(document.createTextNode(content))
+                item.parentNode.replaceChild(newScript, item)
+            })
+        });
+
+        // Pjax请求错误时，跳转到404页面
+        document.addEventListener('pjax:error', (err) => {
+            if (err.request.status === 404) {
+                pjax.loadUrl('/404.html')
+            }
+        })
+    </script>
+
+    </div>
+</body>
+
+</html>
