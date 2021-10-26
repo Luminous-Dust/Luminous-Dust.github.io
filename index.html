@@ -106,6 +106,37 @@
     
         <div class="post_item">
              
+            <a class="post_title" href="/2021/10/26/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E5%85%B1%E6%9C%89%E5%87%A0%E7%A7%8D%EF%BC%8C%E6%9C%80%E4%BC%98%E8%A7%A3/" title="创建线程共有几种，最优解 ">
+                创建线程共有几种，最优解
+            </a>
+            <div class="post_description">
+                 
+                我也曾经纠结于，创建线程到底有多少种方式。直到看了一篇文章后，就不纠结了。文章内容如下：
+1、其实，创建线程在本质上只有两种方式
+继承thread类
+实现Runnable接口
+
+①通过Thread创建线程public class ThreadStyle extends Thread&#123;    @Override    public void run()&#123;        System.out.println(&quot;用Thread类实现线程&quot;);    &#125;    public static void main(String[] args) &#123;        new ThreadStyle().start();    &#125;&#125;
+
+②通过Runnable创建线程public class RunnableStyle implements Runnable &#123;    public static void main(String[] args) &#123;        Thread thread = new T...
+            </div>
+            
+            <div class="post_meta_wrap">
+                <span class="post_meta_date">
+                    <i class="far fa-calendar-alt"></i>
+                    <span>发表于  </span>
+                    <span>
+                        2021-10-26
+                    </span>
+                </span>
+                
+
+                
+            </div>
+        </div>
+        
+        <div class="post_item">
+             
             <a class="post_title" href="/2021/10/25/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/" title="hexo常用命令笔记 ">
                 hexo常用命令笔记
             </a>

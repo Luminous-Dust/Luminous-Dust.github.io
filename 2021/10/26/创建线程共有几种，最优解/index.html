@@ -1,0 +1,444 @@
+
+  
+<!DOCTYPE html>
+<html>
+<head>
+     
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>创建线程共有几种，最优解 | luminous dust</title>
+<link href="/img/favicon.png" rel="shortcut icon">
+<meta name="author" content="wzx ">
+<meta name="copyright" content="wzx">
+<meta name="keywords" content="">
+<meta name="description" content="我也曾经纠结于，创建线程到底有多少种方式。直到看了一篇文章后，就不纠结了。文章内容如下：1、其实，创建线程在本质上只有两种方式继承thread类实现Runnable接口①通过Thread创建线程12345678910public class ThreadStyle extends Thread&#123;    @Override    public void run()&#123;        System.out.println(&quot;用Thread类实现线程&quot;);    &#125;    public static void main(String[] ar" />
+<meta property="site_name" content="luminous dust " />
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://example.com/2021/10/26/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E5%85%B1%E6%9C%89%E5%87%A0%E7%A7%8D%EF%BC%8C%E6%9C%80%E4%BC%98%E8%A7%A3/index.html">
+<meta property="og:title" content="创建线程共有几种，最优解 | luminous dust" />
+<meta property="og:site_name" content="luminous dust" />
+<meta property="og:description" content="我也曾经纠结于，创建线程到底有多少种方式。直到看了一篇文章后，就不纠结了。文章内容如下：1、其实，创建线程在本质上只有两种方式继承thread类实现Runnable接口①通过Thread创建线程12345678910public class ThreadStyle extends Thread&amp;#123;    @Override    public void run()&amp;#123;        System.out.println(&amp;quot;用Thread类实现线程&amp;quot;);    &amp;#125;    public static void main(String[] ar" />
+<meta property="og:locale" content="zh-CN">
+<meta property="article:author" content="wzx ">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link href="http://example.com" rel="prefetch">
+<link href="//cdn.jsdelivr.net" rel="preconnect" crossorigin>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="/css/main.css " rel="stylesheet">
+<script src="/js/utlis.js"></script>
+ 
+    
+ 
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+     
+    
+ 
+     
+
+<script>
+    var $config = {
+        
+        search_file: "/search.xml",
+        
+        
+        code_block_expand: {
+            enable: true,
+            height: 400,
+            scrollTop: 200
+        }
+        
+    }
+</script>
+    
+
+
+
+
+  
+
+
+    <div id="body_wrap">
+        <nav class="navbar">
+    <div id="navbar_wrap">
+        <a href="/" class="blog_name">luminous dust</a>
+        
+            <i class="fas fa-search search_btn" ></i>
+        
+        <i class="fas fa-bars open_nav"></i>
+        <ul class="menu">
+          
+        </ul>
+    </div>
+</nav>
+<div id="mobile_nav">
+    <ul>
+    
+    </ul>
+</div>
+        <div id="main_wrap">
+                <main class="main">
+                     
+                     
+
+<article class="post">
+  <div class="post_info">
+    <div class="post_title">
+      <h1>创建线程共有几种，最优解</h1>
+    </div>
+    <div class="post_meta">
+      <div class="post_date">
+        <i class="far fa-calendar-alt fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">
+          发表于
+            2021-10-26 |
+        </span>
+        
+        <i class="fas fa-history fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">
+          更新于
+            2021-10-26
+        </span>
+      </div>
+      <div class="post-meta-wordcount">
+        <i class="far fa-file-word fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">总字数:</span>
+        <span class="word-count">957 | </span>
+        <i class="far fa-clock fa-fw post-meta-icon"></i>
+        <span class="post-meta-label">阅读时长:</span>
+        <span>4分钟</span>
+        
+        | <i class="far fa-eye fa-fw post-meta-icon"></i>
+        <span id="/2021/10/26/%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E5%85%B1%E6%9C%89%E5%87%A0%E7%A7%8D%EF%BC%8C%E6%9C%80%E4%BC%98%E8%A7%A3/" class="leancloud_visitors">
+            <span class="post-meta-label">阅读量:</span>
+            <span class="leancloud-visitors-count" id="twikoo_visitors">0</span>
+        </span>
+        
+      </div>
+    </div>
+  </div>
+  <div class="post_content">
+    <p>我也曾经纠结于，创建线程到底有多少种方式。直到看了一篇文章后，就不纠结了。文章内容如下：</p>
+<h4 id="1、其实，创建线程在本质上只有两种方式"><a href="#1、其实，创建线程在本质上只有两种方式" class="headerlink" title="1、其实，创建线程在本质上只有两种方式"></a>1、其实，创建线程在本质上只有<strong>两种方式</strong></h4><ul>
+<li>继承thread类</li>
+<li>实现Runnable接口</li>
+</ul>
+<h5 id="①通过Thread创建线程"><a href="#①通过Thread创建线程" class="headerlink" title="①通过Thread创建线程"></a>①通过Thread创建线程</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadStyle</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;用Thread类实现线程&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> ThreadStyle().start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="②通过Runnable创建线程"><a href="#②通过Runnable创建线程" class="headerlink" title="②通过Runnable创建线程"></a>②通过Runnable创建线程</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RunnableStyle</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> RunnableStyle());</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;用runnable方法实现线程&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、Thread和Runnable的区别"><a href="#2、Thread和Runnable的区别" class="headerlink" title="2、Thread和Runnable的区别"></a>2、Thread和Runnable的区别</h4><p>点开Thread类源码后，会发现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Thread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* Make sure registerNatives is the first thing &lt;clinit&gt; does. */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">registerNatives</span><span class="params">()</span></span>;</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> Thread和Runnable两种方式创建线程时，都会通过Thread中的run方法</p>
+<p>Thread中的run方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (target != <span class="keyword">null</span>) &#123;	<span class="comment">//target是Runnable的对象</span></span><br><span class="line">            target.run();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>这个方法的意思就是，当传入了Runnable，也就是target!=null，就执行target的run。<br> 而当target=null，也就是通过Thread方式，没有传入Runnable实例，就会重写这个run方法。</strong></p>
+<h4 id="3、Runnable和Thread哪种方式更好呢？"><a href="#3、Runnable和Thread哪种方式更好呢？" class="headerlink" title="3、Runnable和Thread哪种方式更好呢？"></a>3、Runnable和Thread哪种方式更好呢？</h4><p><strong>Runnable更好</strong><br> 原因：</p>
+<ol>
+<li>从代码架构角度:具体的任务(run方法) 应该和“创建和运行线程的机制(Thread类)”解耦，runnable对象可以实现解耦。</li>
+<li>使用继承Thread的方式的话，那么每次想新建一个任务， 只能新建一个独立的线程，而这样做的损耗会比较大(此如重头开始创建一个线程、  执行完毕以后再销毁等。如果线程的实际工作内容,也就是run()函数里只是简单的打印一行纹字的话，那么可能线程的实际工作内容还不如损耗来的大)。如果使用Runnable和线程池,就可以大大减小这样的损耗。</li>
+<li>继承Thread类以后，于Java语支持双继承，这样就无法再继承其他的类,限制了可扩展性。</li>
+</ol>
+<h4 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h4><p>综上所述，其实只能通过Thread类来新建线程，但是Thread类内部的run方法可以通过两种方式来实现，一种是重写run方法，另一种是实现Runnable接口中的run方法，然后把Runnable实例传给Thread类。</p>
+<p>如果通过匿名内部类同时通过Thread和Runnable两种方式创建线程，最终结果怎样呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123; <span class="comment">//匿名内部类</span></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;!!!runnable!!!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;) &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;!!!thread!!!&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>很明显，在执行时，会先执行匿名内部类里面的内容，即先通过Runnable来创建线程，这时候，向Thread类中传入了runnable实例，这时候如果执行start方法，就会打印runnable类中的内容。<br> 但是，由于后面通过Thread创建线程，会重写系统Thread类中的run方法，因此最终打印的是<br> ！！！thread！！！</p>
+<p><strong>而其他的博客谈到的用Callable和Future创建线程、用线程池创建线程、用计时器创建线程等，本质上都是通过继承Thread或者实现Runnable接口。</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程池创建线程</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">            executorService.submit(<span class="keyword">new</span> Task() &#123;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Task</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">500</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定时器创建线程</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Timer timer = <span class="keyword">new</span> Timer();</span><br><span class="line">        timer.scheduleAtFixedRate(<span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,<span class="number">1000</span>,<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//lambda表达式方法创建线程</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; System.out.println(Thread.currentThread().getName())).start();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>本文内容转载于：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44357371/article/details/107854824">https://blog.csdn.net/qq_44357371/article/details/107854824</a></p>
+
+  </div>
+   
+   
+
+  
+  <div class="post_copyright">
+    <div class="post_copyright_icon"></div>
+      <div class="post_copyright_author">
+          <span class="post_copyright_meta">文章作者: </span>
+            <span class="post_copyright_info">
+              <a href="mailto:lete@lete114.top" >Lete乐特</a>
+            </span>
+      </div>
+      <div class="post_copyright_type">
+          <span class="post_copyright_meta">文章链接: </span>
+            <span class="post_copyright_info">
+              <a href="http://example.com/2021/10/26/创建线程共有几种，最优解/" >http://example.com/2021/10/26/创建线程共有几种，最优解/</a>
+            </span>
+      </div><div class="post_copyright_notice">
+          <span class="post_copyright_meta">版权声明: </span>
+            <span class="post_copyright_info">本博客所有文章除特别声明外，均采用
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/ " target="_blank" >
+                  CC BY-NC-SA 4.0 </a> 许可协议。转载请注明来自
+              <a href="http://example.com/2021/10/26/创建线程共有几种，最优解/" target="_blank" >Lete乐特's Blog</a>
+              ！</span>
+      </div>
+  </div>
+  
+
+
+ 
+
+
+
+
+<div class="pagination_post">
+    
+    
+    <a href="/2021/10/25/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E7%AC%94%E8%AE%B0/">
+      <div class="next_title">hexo常用命令笔记<i class="fas fa-chevron-right"></i></div>
+      <div class="next_desc">hexo12345npm install hexo -g #安装npm update hexo -g #升级hexo version #查看hexo的版本hexo init blog #初始化,...</div>
+    </a>
+    
+</div>
+</article>
+
+    <div class="comment_head" id="直达评论">
+        <hr>
+        <div class="comment_headline">
+            <i class="fas fa-comments fa-fw"></i>
+            <span>评论</span>
+        </div>
+        
+            
+<div id="wcomments"></div>
+<script>
+function LoadWaline() {
+    getScript("//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js",function(){
+        let initData = {
+            el: '#wcomments',
+            path: location.pathname,
+            serverURL: 'https://waline.vercel.app/',
+            placeholder: '快来评论吧!!',
+            avatar: '',
+            meta: 'nick,mail,link'.split(","),
+            requiredFields: 'nick,mail,link'.split(","),
+            pageSize: 5,
+            lang: 'zh-CN',
+            emojiCDN: '',
+            emojiMaps: null,
+            visitor: true
+        }
+        var option = false;
+        if (option) {
+            initData = Object.assign(initData, option)
+        }
+        new Waline(initData)
+    })
+}
+LoadWaline()
+</script>
+        
+    </div>
+
+ 
+ 
+
+  <div id="toc">
+    <div class="toc_title">
+      <div>
+        目录
+          <span class="num">0%</span>
+      </div>
+      <progress class="progress" value="0" max="100"></progress>
+    </div>
+    <div class="toc_list">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%85%B6%E5%AE%9E%EF%BC%8C%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E5%9C%A8%E6%9C%AC%E8%B4%A8%E4%B8%8A%E5%8F%AA%E6%9C%89%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">1、其实，创建线程在本质上只有两种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A0%E9%80%9A%E8%BF%87Thread%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B"><span class="toc-text">①通过Thread创建线程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%91%A1%E9%80%9A%E8%BF%87Runnable%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B"><span class="toc-text">②通过Runnable创建线程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81Thread%E5%92%8CRunnable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">2、Thread和Runnable的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81Runnable%E5%92%8CThread%E5%93%AA%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%9B%B4%E5%A5%BD%E5%91%A2%EF%BC%9F"><span class="toc-text">3、Runnable和Thread哪种方式更好呢？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">4、总结</span></a></li></ol>
+    </div>
+  </div>
+
+                </main>
+        </div>
+        <section id="rightside">
+    
+    <div class="rightside_item">
+        
+        
+         
+         
+        
+            <a id="open_toc" title="目录">
+                <i class="fas fa-list-ul"></i>
+            </a>
+        
+         
+         
+        <a href="javascript:(0)" id="darkmode" title="深色/浅色 ">
+            <i class="fas fa-moon"></i>
+        </a>
+         
+        
+        
+            <a href="#直达评论" title="直达评论">
+                <i class="fas fa-comments"></i>
+            </a>
+        
+        <a href="#" title="回到顶部">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+</section>
+         
+
+<footer class="footer" id="footer">
+    <div class="copyright">
+      &copy; 2020 - 2021
+        <i class="fas fa-fan"></i>
+        wzx
+    </div>
+    <div class="framework-info">
+        <span>框架 </span>
+        <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="footer-separator">|</span>
+        <span>主题 </span>
+        <a href="https://github.com/lete114/hexo-theme-MengD" target="_blank">MengD.(萌典) </a>
+    </div>
+    
+    <div class="custom-text">我相信我可以，但我一直在路上，所以我有无限的可能！！</div>
+</footer>
+    </div>
+    <div id="mask" onclick="close_all()"></div>
+    
+    <div id="local_search">
+        <div id="local_search_title">本地搜索 </div>
+        <input id="local_search_input" autocomplete="off" placeholder="搜索文章"
+            type="text">
+        <hr>
+        <div id="local_search_result"></div>
+        <span class="search_close_button"><i class="fas fa-times"></i></span>
+    </div>
+    <script src="/js/search.js"></script>
+
+    <div class="script">
+        <script src="/js/main.js"></script>
+        
+
+ 
+<script>
+    var originTitle = document.title;
+    var titleTime;
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+            clearTimeout(titleTime);
+        } else {
+            document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+            titleTime = setTimeout(function () {
+                document.title = originTitle;
+            }, 2000);
+        }
+    });
+</script>
+
+
+<script src="/js/lazyload.js"></script>
+
+
+
+    
+
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        var pjax = new Pjax({
+            selectors: [
+                "head title",
+                "main.main",
+                "#rightside"
+            ],
+            cache: true,
+            cacheBust: false
+        });
+
+        // 清除时间
+        var timer = null;
+        // 执行进度条
+        function ProgressStart(){
+            // 设置初始进度
+            var progress = 10;
+            // 创建进度条 及 css样式
+            var div = document.createElement('div');
+            div.className = "pjax_progress";
+            document.body.prepend(div);
+            // 定义随机数最大值最小值
+            var max=10,mini=3;
+            var result=max-mini;
+            // 清除
+            clearInterval(timer);
+            // 0.5秒内累加进度
+            timer = setInterval(function(){
+                // 随机数
+                var num = parseInt(Math.random()*result);
+                var randomResult = num+mini;
+                // 累加
+                progress+=randomResult
+                document.getElementsByClassName("pjax_progress")[0].style.width = progress+"%";
+                // 当进度达到95%时停止
+                if(progress>95)progress=95
+            },500)
+        }
+        // 加载进度条加载完毕
+        function ProgressFinish(){
+            clearInterval(timer);
+            // 页面加载完毕后进度100% 并在0.7秒后删除
+            var progress = document.getElementsByClassName("pjax_progress");
+            progress[0].style.width = "100%";
+            timer = setTimeout(function () {
+            progress[0].parentNode.removeChild(progress[0])
+            }, 700);
+        }
+
+        // 开始 PJAX 执行的函数
+		document.addEventListener('pjax:send', function () {
+            // 执行进度条
+            ProgressStart()
+        });
+        // PJAX 完成之后执行的函数，可以和上面的重载放在一起
+		document.addEventListener('pjax:complete', function () {
+
+            // 加载进度条加载完毕
+            ProgressFinish()
+            // 执行所有方法
+            exe_all_fn()
+
+            
+                // 图片懒加载
+                ImgLazyLoad("body img[data-img]","data-img")
+            
+            
+            
+            document.querySelectorAll('script[data-pjax]').forEach(item => {
+                const newScript = document.createElement('script')
+                const content = item.text || item.textContent || item.innerHTML || ""
+                Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+                newScript.appendChild(document.createTextNode(content))
+                item.parentNode.replaceChild(newScript, item)
+            })
+        });
+
+        // Pjax请求错误时，跳转到404页面
+        document.addEventListener('pjax:error', (err) => {
+            if (err.request.status === 404) {
+                pjax.loadUrl('/404.html')
+            }
+        })
+    </script>
+
+    </div>
+</body>
+
+</html>
